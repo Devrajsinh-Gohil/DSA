@@ -13,14 +13,13 @@ class node
     }
 };
 
-void insertAtFirst(node* &head, int val)
-{
-    node* n = new node(val);
+void insertAtHead(node* &head, int val){
+    node*n = new node(val);
     n->next = head;
     head = n;
 }
 
-void insertAtLast(node* &head, int val){
+void insertAtTail(node* &head, int val){
     node* n = new node(val);
 
     if(head == NULL){
@@ -37,6 +36,19 @@ void insertAtLast(node* &head, int val){
     
 }
 
+bool search(node* head, int key){
+    node* temp = head;
+    while (temp != NULL)
+    {
+        if(temp->data == key)
+        {
+            return true;
+        }
+        temp = temp->next;
+    }
+    return false;
+}
+
 void display(node* head){
     node* temp = head;
     while (temp != NULL)
@@ -44,33 +56,17 @@ void display(node* head){
         cout << temp->data << "->";
         temp = temp->next;
     }
-    cout << "NULL" << endl;
-}
-
-bool serach(node* head, int key)
-{
-    node* temp = head;
-    while (temp != NULL)
-    {
-        if (temp->data == key)
-        {
-            return true;
-        }
-        
-        temp = temp->next;
-    }
-    return false;   
+    cout << "NULL"<< endl;
 }
 
 int main()
 {
     node* head = NULL;
-    insertAtLast(head,1);
-    insertAtLast(head,2);
-    insertAtLast(head,3);
-    insertAtFirst(head,4);
+    insertAtTail(head,1);
+    insertAtTail(head,2);
+    insertAtTail(head,3);
     display(head);
-    cout << serach(head, 3) << endl;
-
+    insertAtHead(head,4);
+    display(head);
     return 0;
 }
